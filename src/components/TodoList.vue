@@ -12,31 +12,6 @@
         :index="index"
         :checkAll="!anyRemaining"
         >
-        <!-- <div class="todo-item-left">
-          <input
-          v-model="todo.completed"
-          type="checkbox"/>
-          <div
-          v-if="!todo.editing"
-          @dblclick="editTodo(todo)"
-          :class="{ completed: todo.completed}"
-          class="todo-item-label">{{ todo.title }}</div>
-          <input
-          v-else
-          v-model="todo.title"
-          @blur="doneEdit(todo)"
-          @keyup.enter="doneEdit(todo)"
-          @keyup.esc="cancelEdit(todo)"
-          v-focus
-          class="todo-item-edit" type="text"
-          />
-        </div>
-        <div
-          @click="removeTodo(index)"
-          class="remove-item"
-          >
-          &times;
-        </div> -->
       </todo-item>
     </transition-group>
     <div class="extra-container">
@@ -47,7 +22,7 @@
             @change="checkAllTodos"
             type="checkbox" /> Check All
         </label></div>
-      <div>{{ remaining }} items left</div>
+      <todo-items-remaining :remaining="remaining"></todo-items-remaining>
     </div>
     <div class="extra-container">
       <div>
@@ -77,10 +52,13 @@
 
 <script>
 import TodoItem from './TodoItem'
+import TodoItemsRemaining from './TodoItemsRemaining'
+
 export default {
   name: 'todo-list',
   components: {
     TodoItem,
+    TodoItemsRemaining,
   },
   data () {
     return {
