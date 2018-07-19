@@ -11,8 +11,6 @@
         :todo="todo"
         :index="index"
         :checkAll="!anyRemaining"
-        @removedTodo="removeTodo"
-        @finishedEdit="finishedEdit"
         >
         <!-- <div class="todo-item-left">
           <input
@@ -105,6 +103,10 @@ export default {
         }
       ]
     }
+  },
+  created() {
+    eventBus.$on('removeTodo', (index) => this.removeTodo(index))
+    eventBus.$on('finishedEdit', (data) => this.finishedEdit(data))
   },
   computed: {
     remaining() {
